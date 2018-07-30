@@ -1,5 +1,6 @@
 # PythonDjango=2.0.7------ Python: 3.6.5---- database: SQLite
-For Ubuntu:
+For Ubuntu: You must install "pip" and "virtualenv" to can use this source
+
 The first step: cd PythonDjango
 - Step 2: Open Terminal on your computer or on VSCode. 
 source /venv/bin/active
