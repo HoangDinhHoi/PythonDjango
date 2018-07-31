@@ -19,7 +19,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import home, handle_errors, register
-from django.contrib.auth.views import login, logout
 from django.views.static import serve
 from django.conf.urls import handler400, handler403, handler404, handler500
 
@@ -38,10 +37,8 @@ urlpatterns = [
     path("pricemenu/", include('pricemenu.urls')),
     # Blog
     path("blog/", include('blog.urls')),   
-    # Link to login of admin page
-    path("login/", login, {'template_name':'login.html'}, name= 'login'),
-    # Link to logout of admin page
-    path('logout/', logout, {'template_name':'logout.html'}, name = 'logout'),
+    #Add Django site authentication urls (for login, logout, password management)
+    path("accounts/", include('django.contrib.auth.urls')),
 
     # Form to register for user
     path("register/", register, name="register"),

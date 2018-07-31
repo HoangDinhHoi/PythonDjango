@@ -14,11 +14,18 @@ import os
 # change language
 # from django.utils.translation import ugettext_lazy as _
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'hoanghoibk@gmail.com'
-EMAIL_HOST_PASSWORD = '6364848895'
-EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'hoanghoibk@gmail.com'
+# EMAIL_HOST_PASSWORD = '6364848895'
+# EMAIL_PORT = 587
+
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'testsite_app'
+# EMAIL_HOST_PASSWORD = 'mys3cr3tp4ssw0rd'
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = 'TestSite Team <noreply@example.com>'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -163,8 +170,11 @@ STATICFILES_DIRS = (
 )
 
 
-# for login 
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout'
 
 APPEND_SLASH = False
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

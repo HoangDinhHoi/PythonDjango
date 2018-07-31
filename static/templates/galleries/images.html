@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap %}
+{% block title %}Images{% endblock title %}
+{% block main %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-12">
+                    <div class="features_items">
+                        <!--features_items-->
+                        <h2 class="title text-center">Images List</h2>
+                        {% for item in all_image %}
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <img src="{{item.image.url}}" alt="Image" />
+                                        <h2>{{item.title}}</h2>
+                                        <p>{{item.pub_date|date:"Y-m-d"}}</p>
+                                        <a href="#" class="btn btn-default add-to-cart">
+                                            <i class="fa fa-shopping-cart"></i> Book Now</a>
+                                    </div>
+                                    {% if user.is_superuser %}
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h2>{{item.title}}</h2>
+                                            <form action="{% url 'delete_image' item.id %}" method="post">{% csrf_token %}
+                                            <button class="btn btn-default" class="form-control" type="submit"> Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    {% endif %}                    
+                                </div>
+                            </div>
+                        </div>
+                         {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+<!--Form Upload Images-->
+    {% if user.is_superuser %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-12">
+                    <form role="form" action="." method="POST" enctype="multipart/form-data">{% csrf_token %}
+                         {{form|bootstrap}}
+                         <button class="btn btn-default" type="submit" class="form-control">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    
+{% endblock main %}
