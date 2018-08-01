@@ -18,7 +18,7 @@
                                         <img src="{{item.image.url}}" alt="Image" />
                                         <h2>{{item.title}}</h2>
                                         <p>{{item.pub_date|date:"Y-m-d"}}</p>
-                                        <a href="#" class="btn btn-default add-to-cart">
+                                        <a href="#" class="btn btn-success add-to-cart">
                                             <i class="fa fa-shopping-cart"></i> Book Now</a>
                                     </div>
                                     {% if user.is_superuser %}
@@ -47,7 +47,7 @@
                 <div class="col-md-offset-3 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-12">
                     <form role="form" action="." method="POST" enctype="multipart/form-data">{% csrf_token %}
                          {{form|bootstrap}}
-                         <button class="btn btn-default" type="submit" class="form-control">Upload</button>
+                         <button class="btn btn-success" type="submit" class="form-control">Upload</button>
                     </form>
                 </div>
             </div>
