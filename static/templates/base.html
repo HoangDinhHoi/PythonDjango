@@ -138,15 +138,15 @@
                                 {% endif %}
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-star"></i> Wishlist</a>
+                                        <i class="fa fa-star"></i> Book</a>
                                 </li>
                                 <li>
                                     <a href="checkout.html">
-                                        <i class="fa fa-crosshairs"></i> Checkout</a>
+                                        <i class="fa fa-crosshairs"></i> Menu Price List</a>
                                 </li>
                                 <li>
                                     <a href="cart.html">
-                                        <i class="fa fa-shopping-cart"></i> Cart</a>
+                                        <i class="fa fa-shopping-cart"></i> Booking</a>
                                 </li>
                                 {% if user.is_active %}
                                     <li>
@@ -199,7 +199,7 @@
                                             </li>
                                         {% endif %}
                                         <li>
-                                            <a href="#">Checkout</a>
+                                            <a href="{% url 'pricetable' %}">Menu Price List</a>
                                         </li>
                                         <li>
                                             <a href="#">Cart</a>

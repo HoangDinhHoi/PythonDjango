@@ -6,14 +6,12 @@ from .forms import PriceMenuForm
 # Create your views here.
 
 def pricetable(request):
-    template = 'pricemenu/pricetable.html'
     all_price = PriceMenu.objects.all().order_by('-pub_date')
     add(request)
-    return render(request, template, locals())
+    return render(request, 'pricemenu/pricetable.html', locals())
 
 def edit(request, id):
     form_price = PriceMenuForm
-    template = 'pricemenu/editprice.html'
     pricelist = PriceMenu.objects.get(id=id)
 
     # check method POST
@@ -26,7 +24,7 @@ def edit(request, id):
             new_form.save()
 
             return HttpResponseRedirect('/pricemenu/pricelist/')
-    return render(request, template, locals())
+    return render(request, 'pricemenu/editprice.html', locals())
 
 @login_required
 def delete(request, id):

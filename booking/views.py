@@ -126,3 +126,5 @@ def delete(request, id):
         
         #go to the book list
         return HttpResponseRedirect('/salon/book_list/')
+
+

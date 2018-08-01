@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Table Menu Price List{% endblock title %}
+{% block main %}
+    <section><!-- Table Menu Price List -->
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-info">
+                        <div class="panel panel-heading">
+                            <h3 style="text-align:center;">Table Menu Price</h3>
+                        </div>
+                        <div class="panel panel-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Price(Unit:K)</th>
+                                        <th scope="col">Update Time</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for item in all_price %}
+                                        <tr>
+                                            <td scope="row">
+                                                {{ forloop.counter }}
+                                            </td>
+                                            <td>
+                                                {{item.name}}
+                                            </td>
+                                            <td>
+                                                {{item.price}}
+                                            </td>
+                                            <td>
+                                                {{item.pub_date}}
+                                            </td>
+                                            {% if user.is_superuser %}
+                                                <td>
+                                                    <form action="{% url 'edit_price' item.id %}" method="post" role="form">{% csrf_token %}
+                                                        <button class="btn btn-danger">Edit</button>
+                                                    </form>
+                                                </td>
+                                            {% else %}
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Table Menu Price List -->
+{% endblock main %}

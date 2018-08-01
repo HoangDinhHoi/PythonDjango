@@ -73,4 +73,74 @@
         </div>
     </section>
     <!--/slider-->
+    <!-- Menu Price List -->
+    <section>
+        <!-- Menu -->
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="recommended_items">
+                        <!--recommended_items-->
+                        <h2 class="title text-center">menu list</h2>
+    
+                        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <!-- item active: three items -->
+                                    {% for item in price_menu_list_3 %}
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="{{item.pricemenu_image.url}}" alt="Item Image" />
+                                                    <h2>{{item.price}}K</h2>
+                                                    <p>{{item.name}}</p>
+                                                    <p>Update: {{item.pub_date|date:"Y-m-d"}}</p>
+                                                    <a href="#book_form" class="btn btn-default add-to-cart">
+                                                        <i class="fa fa-shopping-cart"></i>Book Now</a>
+                                                </div>
+    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+    
+                                {% for item1 in new_price_list %}
+                                <div class="item">
+                                    <!-- item not active: many -->
+                                    {% for item2 in item1 %}
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="{{item2.pricemenu_image.url}}" alt="Item Image" />
+                                                    <h2>{{item2.price}}K</h2>
+                                                    <p>{{item2.name}}</p>
+                                                    <p>Update: {{item2.pub_date|date:"Y-m-d"}}</p>
+                                                    <a href="#book_form" class="btn btn-default add-to-cart">
+                                                        <i class="fa fa-shopping-cart"></i> Book Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% endfor %}
+    
+                            </div>
+                            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!--/recommended_items-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Menu -->
 {% endblock main %}
