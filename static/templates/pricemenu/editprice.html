@@ -34,6 +34,16 @@
                     </form>
                 </div>
             </div>
+
+            <!-- Delete -->
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offet-2 col-xs-12">
+                    <form action="{% url 'delete_price' pricelist.id %}" method="post" role="form">{% csrf_token %}
+                        <button class="btn btn-danger"><i class="fa fa-trash-o"> Delete</i></button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section><!-- End Form Edit Menu Price -->
+    <hr>
 {% endblock main %}

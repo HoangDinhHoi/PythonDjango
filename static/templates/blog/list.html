@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block title %}List Blog{% endblock title %}
+{% block main %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-12">
+                    <div class="blog-post-area">
+                        <h2 class="title text-center">Latest From our Blog</h2>
+                        <!-- Bat dau vong lap de show ra cac post-->
+                        {% for post in posts %}
+                        <div class="single-blog-post">
+                            <h3>{{ post.title }}</h3>
+                            <div class="post-meta">
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-user"></i> {{ user.username }}</li>
+                                    <li>
+                                        <i class="fa fa-clock-o"></i> {{ post.timestamp|time }}</li>
+                                    <li>
+                                        <i class="fa fa-calendar"></i>  {{ post.timestamp|date:"Y-m-d" }}</li>
+                                </ul>
+                            </div>
+                            <a href="">
+                                <img src="{{post.image_post.url}}" alt="Image of post">
+                            </a>
+                            <p>{{ post.body|truncatechars:300 }}</p>
+                            <a class="btn btn-primary" href="{% url 'detail_post' %}">Read More</a>
+                        </div>
+                        {% endfor %}
+
+
+                        <!--phan trang -->
+                        <div class="pagination-area">
+                            <span class="step-links">
+                                {% if posts.has_previous %}
+                                <a href="?page={{ posts.previous_page_number }}"><i class="fa fa-backward">Previous</i></a>
+                                {% endif %}
+                            </span>
+                        
+                            <span class="current">
+                                Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                            </span>
+                        
+                            <span>
+                                {% if posts.has_next %}
+                                <a href="?page={{ posts.next_page_number }}"><i class="fa fa-forward">Next</i></a>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock main %}

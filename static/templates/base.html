@@ -204,23 +204,19 @@
                                         <li>
                                             <a href="#">Cart</a>
                                         </li>
-                                        <li>
-                                            <a href="{% url 'login' %}">Login</a>
-                                        </li>
+                                        {% if user.is_active %}
+                                            <li>
+                                                <a href="{% url 'logout' %}">Logout</a>
+                                            </li>
+                                        {% else %}
+                                            <li>
+                                                <a href="{% url 'login' %}">Login</a>
+                                            </li>
+                                        {% endif %}
                                     </ul>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#">Blog
-                                        <i class="fa fa-angle-down"></i>
-                                    </a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li>
-                                            <a href="#">Blog List</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Blog Single</a>
-                                        </li>
-                                    </ul>
+                                    <a href="{% url 'list_post' %}">Blog</a>
                                 </li>
                                 <li>
                                     <a href="#">404</a>

@@ -96,7 +96,7 @@
                                                     <h2>{{item.price}}K</h2>
                                                     <p>{{item.name}}</p>
                                                     <p>Update: {{item.pub_date|date:"Y-m-d"}}</p>
-                                                    <a href="#book_form" class="btn btn-default add-to-cart">
+                                                    <a href="{% url 'about' %}#book_form" class="btn btn-default add-to-cart">
                                                         <i class="fa fa-shopping-cart"></i>Book Now</a>
                                                 </div>
     
@@ -118,7 +118,7 @@
                                                     <h2>{{item2.price}}K</h2>
                                                     <p>{{item2.name}}</p>
                                                     <p>Update: {{item2.pub_date|date:"Y-m-d"}}</p>
-                                                    <a href="#book_form" class="btn btn-default add-to-cart">
+                                                    <a href="{% url 'about' %}#book_form" class="btn btn-default add-to-cart">
                                                         <i class="fa fa-shopping-cart"></i> Book Now</a>
                                                 </div>
                                             </div>
