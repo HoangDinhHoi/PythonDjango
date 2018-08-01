@@ -191,16 +191,18 @@
                                     </a>
                                     <ul role="menu" class="sub-menu">
                                         <li>
-                                            <a href="shop.html">Book Form</a>
+                                            <a href="{% url 'about' %}">Book Form</a>
+                                        </li>
+                                        {% if user.is_superuser %}
+                                            <li>
+                                                <a href="{% url 'book_list' %}">Booking List</a>
+                                            </li>
+                                        {% endif %}
+                                        <li>
+                                            <a href="#">Checkout</a>
                                         </li>
                                         <li>
-                                            <a href="product-details.html">Product Details</a>
-                                        </li>
-                                        <li>
-                                            <a href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a href="cart.html">Cart</a>
+                                            <a href="#">Cart</a>
                                         </li>
                                         <li>
                                             <a href="{% url 'login' %}">Login</a>
@@ -213,18 +215,18 @@
                                     </a>
                                     <ul role="menu" class="sub-menu">
                                         <li>
-                                            <a href="blog.html">Blog List</a>
+                                            <a href="#">Blog List</a>
                                         </li>
                                         <li>
-                                            <a href="blog-single.html">Blog Single</a>
+                                            <a href="#">Blog Single</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="404.html">404</a>
+                                    <a href="#">404</a>
                                 </li>
                                 <li>
-                                    <a href="contact-us.html">Contact</a>
+                                    <a href="#">Contact</a>
                                 </li>
                                 <li>
                                     <a href="{% url 'images' %}">Galleries</a>

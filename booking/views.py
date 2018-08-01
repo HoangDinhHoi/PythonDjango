@@ -17,7 +17,7 @@ import datetime
 # Create your views here.
 def about(request):
     book_form = BookForm
-    template = 'booking/about.html'
+    template = 'booking/book_form.html'
     # show list price from PriceMenu
     price_menu_list_3 = PriceMenu.objects.all()[:3]
     price_menu_list_remain = PriceMenu.objects.all()[3:]
@@ -96,7 +96,7 @@ def edit(request, id):
     # get form of class Book
     book_form = BookForm
     
-    template = 'booking/edit.html'
+    template = 'booking/edit_booking.html'
     booking = Book.objects.get(id=id)
     # get all objects of Price
     all_price = PriceMenu.objects.all()

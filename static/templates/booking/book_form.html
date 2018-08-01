@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load  bootstrap %}
+{% block title %}Book Form{% endblock title %}
+{% block main %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-3 col-xs-12">
+                    <form action="{% url 'about' %}" method="post">{% csrf_token %}
+                         {{ book_form.name|bootstrap }}
+                         {{ book_form.menu|bootstrap }}                         
+                         <label for="date">Date</label>
+                         <input type="date" class="form-control" name="date" id="id_date">
+                         {{ book_form.book_time|bootstrap }}
+                         {{ book_form.email|bootstrap }}
+                         <button class="btn btn-info" class="form-control" type="submit">Book</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock main %}
