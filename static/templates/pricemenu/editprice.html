@@ -7,20 +7,30 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offet-2 col-xs-12">
-                    <form action="." method="post" role="form">{% csrf_token %}
+                    <form action="." method="POST" role="form">{% csrf_token %}
                          <div class="form-group"><!-- name -->
+                            {{ form_price.message.errors }}
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" max_length="100" placeholder="{{pricelist.name}}" value="{{pricelist.name}}">
+                            <input type="text" class="form-control" max_length="100" placeholder="{{pricelist.name}}" value="{{pricelist.name}}" id="id_name" name="name">
                          </div>
 
                          <div class="form-group"><!-- price -->
                             <label for="price">Price</label>
-                            <input type="number" class="form-control" placeholder="{{pricelist.price}}" value="{{pricelist.price}}">
+                            <input type="number" class="form-control" placeholder="{{pricelist.price}}" value="{{pricelist.price}}" id="id_price" name="price">
+                         </div>
+
+                         <div class="form-group">
+                            <label for="pricemenu_image">Upload Image</label>
+                            <input type="file" class="form-control" id="id_pricemenu_image" name="pricemenu_image" value="{{ pricelist.pricemenu_image }}">
                          </div>
 
                          <div class="form-group"><!-- button-->
-                             <button class="btn btn-success" type="submit"><i class="fa fa-save"> Save</i></button>
-                         </div>
+                            <form action="{% url 'edit_price' pricelist.id %}" method="post">{% csrf_token %}
+                                <button class="btn btn-success" type="submit">
+                                    <i class="fa fa-save"> Save</i>
+                                </button>
+                            </form>
+                        </div>
                     </form>
                 </div>
             </div>

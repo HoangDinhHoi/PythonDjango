@@ -8,22 +8,33 @@
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th scope="col">No.</th>
                                     <th>Name</th>
                                     <th>Menu</th>
                                     <th>Date</th>
                                     <th>Email</th>
                                     <th>Booking Time</th>
-                                    <th>Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for book in all_book %}
                                     <tr>
+                                        <td scope="row">{{forloop.counter}}</td>
                                         <td>{{book.name}}</td>
                                         <td>{{book.menu}}</td>
                                         <td>{{book.date|date:"Y-m-d"}}</td>
                                         <td>{{book.email}}</td>
-                                        <td>{{book.book_time}}</td>
+                                        <td>
+                                            {% if book.book_time == '1' %}
+                                                10-12
+                                            {% elif book.book_time == '2' %}
+                                                12-14
+                                            {% elif book.book_time == '3' %}
+                                                14-16
+                                            {% else %}
+                                                16-20
+                                            {% endif %}
+                                        </td>
                                         <td>
                                             <form action="{% url 'edit_booking' book.id %}" method="post">{% csrf_token %}
                                                 <button class="btn btn-danger" type="submit"> Edit</button>
