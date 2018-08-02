@@ -18,7 +18,7 @@
                                         <img src="{{item.image.url}}" alt="Image" />
                                         <h2>{{item.title}}</h2>
                                         <p>{{item.pub_date|date:"Y-m-d"}}</p>
-                                        <a href="#" class="btn btn-success add-to-cart">
+                                        <a href="{% url 'about' %}#book_form" class="btn btn-success add-to-cart">
                                             <i class="fa fa-shopping-cart"></i> Book Now</a>
                                     </div>
                                     {% if user.is_superuser %}

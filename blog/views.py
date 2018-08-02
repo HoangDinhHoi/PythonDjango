@@ -1,6 +1,7 @@
 """docstrings"""
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import BlogPost
+from .models import BlogPost, Comment
 from .forms import CommentForm
 from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger # import de phan trang
@@ -10,16 +11,17 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger # impor
 # Create your views here.
 
 def add_comment_to_post(request, pk):
+    # post = BlogPost.objects.get(pk=pk)
     post = get_object_or_404(BlogPost, pk=pk)
     form = CommentForm()
+    comments = Comment.objects.all().order_by("-comment_date")
 
     if request.method == "POST":
-        form = CommentForm(request.POST, author=request.user,
-                           post=post)
+        form = CommentForm(request.POST, author=request.user, post=post)
         if form.is_valid():
             form.save()
 
-            return redirect(pk)
+            return HttpResponseRedirect(request.path)
         
     return render(request, 'blog/post.html', locals())
 
