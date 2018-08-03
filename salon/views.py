@@ -18,7 +18,7 @@ def handle_errors(request):
 
 def register(request):
     # to register for user
-    form = RegistrationForm
+    form = RegistrationForm()
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():

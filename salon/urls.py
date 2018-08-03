@@ -39,12 +39,13 @@ urlpatterns = [
     path("blog/", include('blog.urls')),   
     #Add Django site authentication urls (for login, logout, password management)
     path("accounts/", include('django.contrib.auth.urls')),
-
     # Form to register for user
     path("register/", register, name="register"),
-
     # For display image
     # url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),    
+    # For Shop App
+    # path("shop/", include('shop.urls')),
+
 ]
 handler400 = 'salon.views.handle_errors'
 handler403 = 'salon.views.handle_errors'

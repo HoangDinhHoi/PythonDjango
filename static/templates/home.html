@@ -17,11 +17,11 @@
                             <div class="item active">
                                 <div class="col-sm-6">
                                     <h1>
-                                        <span>E</span>-SHOPPER</h1>
-                                    <h2>Free E-Commerce Template</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                        ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get"><a href="{% url 'about' %}#book_form"> Book Now</a></button>
+                                        <span>BEAUTY</span> SALON</h1>
+                                    <h2>GỘI ĐẦU MASSAGE BẤM HUYỆT</h2>
+                                    <p>Tận hưởng suối nước mát lạnh lan toả khắp mái đầu. Đôi tay Skinner Girl khéo léo massage bấm huyệt đưa bạn chìm vào cảm giác
+                                    khoan khoái, quên hết mọi ưu phiền cuộc sống. </p>
+                                    <button type="button" class="btn btn-default get"><a href="{% url 'about' %}#book_form" style="text-decoration:none;color:aliceblue"> <i class="fa fa-book"> Booking Now</i></a></button>
                                 </div>
                                 <div class="col-sm-6">
                                     <img src="{% static 'images/home/home.jpeg' %}" class="girl img-responsive" alt="home image" style="width: 490px;height:275px;"/>
@@ -30,11 +30,11 @@
                             <div class="item">
                                 <div class="col-sm-6">
                                     <h1>
-                                        <span>E</span>-SHOPPER</h1>
-                                    <h2>100% Responsive Design</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                        ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                        <span>BEAUTY</span> SALON</h1>
+                                    <h2>TẬN HƯỞNG SHINE COMBO 7 BƯỚC THƯ GIÃN TỎA SÁNG</h2>
+                                    <p>Lột bay hết mụn cám bởi thiết bị độc quyền chỉ có tại 30Shine. Làn da mặt nhạy cảm sẽ được giữ ẩm bởi tinh chất hoa hồng
+                                    chỉ có ở Spa cao cấp, giúp các chàng trai sở hữu ngay khuôn mặt sáng, mịn, cuốn hút phái nữ. </p>
+                                    <button type="button" class="btn btn-default get"><a href="{% url 'about' %}#book_form" style="text-decoration:none;color:aliceblue"><i class="fa fa-book"> Booking Now</i></a></button>
                                 </div>
                                 <div class="col-sm-6">
                                     <img src="{% static 'images/home/home01.jpeg' %}" class="girl img-responsive" alt="" style="width: 490px;height:275px;"/>
@@ -44,11 +44,12 @@
                             <div class="item">
                                 <div class="col-sm-6">
                                     <h1>
-                                        <span>E</span>-SHOPPER</h1>
-                                    <h2>Free Ecommerce Template</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                        ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                        <span>BEAUTY </span>SALON</h1>
+                                    <h2>CHĂM SÓC DA MẶT BẰNG CÔNG NGHỆ CAO</h2>
+                                    <p>Quy trình rửa mặt thiết kế riêng cho phái mạnh cuốn trôi bụi bẩn & tế bào chết, mang đến cho bạn làn da sạch khỏe, không
+                                    bóng nhờn. Skinner girl với đôi tay mềm mại massage khắp khuôn mặt, ve vuốt từ vành tai đến sau gáy giúp các chàng trai thư
+                                    giãn phục hồi sinh lực. </p>
+                                    <button type="button" class="btn btn-default get"><a href="{% url 'about' %}#book_form" style="text-decoration:none;color:#fff"><i class="fa fa-book"> Booking Now</i></a></button>
                                 </div>
                                 <div class="col-sm-6">
                                     <img src="{% static 'images/home/home02.jpg' %}" class="girl img-responsive" alt="" />
@@ -91,7 +92,7 @@
                                                 <div class="productinfo text-center">
                                                     <img src="{{item.pricemenu_image.url}}" alt="Item Image" />
                                                     <h2>{{item.price}}K</h2>
-                                                    <p>{{item.name}}</p>
+                                                    <strong><h4>{{item.name}}</h4></strong>
                                                     <p>Update: {{item.pub_date|date:"Y-m-d"}}</p>
                                                     <a href="{% url 'about' %}#book_form" class="btn btn-default add-to-cart">
                                                         <i class="fa fa-shopping-cart"></i>Book Now</a>
@@ -113,7 +114,7 @@
                                                 <div class="productinfo text-center">
                                                     <img src="{{item2.pricemenu_image.url}}" alt="Item Image" />
                                                     <h2>{{item2.price}}K</h2>
-                                                    <p>{{item2.name}}</p>
+                                                    <strong><h4>{{item2.name}}</h4></strong>
                                                     <p>Update: {{item2.pub_date|date:"Y-m-d"}}</p>
                                                     <a href="{% url 'about' %}#book_form" class="btn btn-default add-to-cart">
                                                         <i class="fa fa-shopping-cart"></i> Book Now</a>

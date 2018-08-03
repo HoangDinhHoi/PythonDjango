@@ -71,8 +71,10 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'blog',
     'bootstrapform',
+    'phonenumber_field',
+    'ourshop',
 ]
-
+PHONENUMBER_DEFAULT_REGION = 'VI'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

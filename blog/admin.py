@@ -3,7 +3,6 @@ from django.contrib import admin
 # Register your models here.
 from .models import BlogPost, Comment
 
-
 class BlogPostAdmin(admin.ModelAdmin):
     list_display = ('title', 'body', 'timestamp', 'image_post',)
     search_fields = ('title',)
