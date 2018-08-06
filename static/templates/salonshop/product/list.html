@@ -1,0 +1,75 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %} {% if category %}{{ category.name }}{% else%}Products
+{% endif %} 
+{% endblock %} 
+{% block main %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron">
+                {% with total_items=cart|length %} {% if cart|length > 0 %} Your cart:
+                <a href="{% url 'cart:cart_detail' %}">
+                    {{ total_items }} item{{ total_items|pluralize }}, ${{ cart.get_total_price }}
+                </a>
+                {% else %} Your cart is empty {% endif %} {% endwith %}
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-3" style="margin-top:50px;">
+
+                <h3 class="my-4">Categories</h3>
+
+                <div class="list-group">
+                    <a href="{% url 'salonshop:product_list' %}" class="list-group-item active">All</a>
+                    {% for c in categories %}
+                    <a href="{{ c.get_absolute_url }}" class="list-group-item">{{ c.name }}</a>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+            <!-- /.col-lg-3 -->
+
+            <div class="col-lg-9" style="margin-top: 50px;">
+                <h1 style="text-align:center;">{% if category %}{{ category.name }}{% else%}Products{% endif %}</h1>
+                <div class="row">
+                    {% for product in products %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="{{ product.get_absolute_url }}">
+                                <img class="card-img-top" src="{% if product.image %}{{ product.image.url }}{% else %}http://placehold.it/700x400{% endif %}"
+                                    alt="">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                </h5>
+                                <h5>${{ product.price }}</h5>
+                                <p class="card-text">{% if product.description %}{{ product.description|truncatechars:20}}{% else %}No Description{% endif %}</p>
+                                <h6>Quantity: {{ product.stock }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.col-lg-9 -->
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+</section>
+
+{% endblock %}

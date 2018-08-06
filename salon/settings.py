@@ -14,11 +14,11 @@ import os
 # change language
 # from django.utils.translation import ugettext_lazy as _
 
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'hoanghoibk@gmail.com'
-# EMAIL_HOST_PASSWORD = '6364848895'
-# EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'hoanghoibk@gmail.com'
+EMAIL_HOST_PASSWORD = '6364848895'
+EMAIL_PORT = 587
 
 # EMAIL_HOST = 'smtp.sendgrid.net'
 # EMAIL_PORT = 587
@@ -68,13 +68,12 @@ INSTALLED_APPS = [
     'booking',
     'galleries',
     'pricemenu',
-    'widget_tweaks',
     'blog',
     'bootstrapform',
-    'phonenumber_field',
-    'ourshop',
+    'salonshop',
+    'cart',
+    'orders',
 ]
-PHONENUMBER_DEFAULT_REGION = 'VI'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -99,6 +98,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -179,4 +179,6 @@ LOGOUT_URL = '/logout'
 
 APPEND_SLASH = False
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CART_SESSION_ID = 'cart' #handle shopping cart

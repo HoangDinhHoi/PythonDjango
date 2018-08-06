@@ -61,3 +61,4 @@ zope.interface==4.3.2
 django-bootstrap-form==3.4
 django-widget-tweaks==1.4.2
 django-phonenumber-field
+django-paypal

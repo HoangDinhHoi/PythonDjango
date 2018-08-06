@@ -28,7 +28,7 @@ def add_comment_to_post(request, pk):
 def list(request):
     
     post_list = BlogPost.objects.all().order_by('-timestamp')
-    paginator = Paginator(post_list, 3)
+    paginator = Paginator(post_list, 4)
 
     pageNumber = request.GET.get('page') #so thu tu cua trang muon xem
 

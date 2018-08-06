@@ -1,171 +1,107 @@
-{% extends "base.html" %}
-{% load bootstrap %}
-{% block title %}Table Menu Price List{% endblock title %}
+{% extends "base.html" %} 
+{% load bootstrap %} 
+{% block title %}Table Menu Price List{% endblock title %} 
 {% block main %}
-    <section><!-- Table Menu Price List -->
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="panel panel-info">
-                        <div class="panel panel-heading">
-                            <h3 style="text-align:center;">Table Menu Price</h3>
-                        </div>
-                        <div class="panel panel-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No.</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Price(Unit:K)</th>
-                                        <th scope="col">Update Time</th>
-                                    </tr>
-                                </thead>
+<section>
+    <!-- Table Menu Price List -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-xs-10 col-md-10 col-sm-10" style="margin-top:50px;margin-left:100px;">
+                <div class="panel panel-info">
+                    <div class="panel panel-heading">
+                        <h3 style="text-align:center;">Table Menu Price</h3>
+                    </div>
+                    <div class="panel panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price(Unit:K)</th>
+                                    <th scope="col">Update Time</th>
+                                </tr>
+                            </thead>
 
-                                <tbody>
-                                    {% for item in all_price %}
-                                        <tr>
-                                            <td scope="row">
-                                                {{ forloop.counter }}
-                                            </td>
-                                            <td>
-                                                {{item.name}}
-                                            </td>
-                                            <td>
-                                                {{item.price}}
-                                            </td>
-                                            <td>
-                                                {{item.pub_date}}
-                                            </td>
-                                            {% if user.is_superuser %}
-                                                <td>
-                                                    <form action="{% url 'edit_price' item.id %}" method="POST" role="form">{% csrf_token %}
-                                                        <button class="btn btn-danger">Edit</button>
-                                                    </form>
-                                                </td>
-                                            {% else %}
-                                            {% endif %}
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
+                            <tbody>
+                                {% for item in all_price %}
+                                <tr>
+                                    <td scope="row">
+                                        {{ forloop.counter }}
+                                    </td>
+                                    <td>
+                                        {{item.name}}
+                                    </td>
+                                    <td>
+                                        {{item.price}}
+                                    </td>
+                                    <td>
+                                        {{item.pub_date}}
+                                    </td>
+                                    {% if user.is_superuser %}
+                                    <td>
+                                        <form action="{% url 'edit_price' item.id %}" method="POST" role="form">{% csrf_token %}
+                                            <button class="btn btn-danger">Edit</button>
+                                        </form>
+                                    </td>
+                                    {% else %} {% endif %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-    </section><!-- End Table Menu Price List -->
+    </div>
+</section>
+<!-- End Table Menu Price List -->
 
-    {% if user.is_superuser %}
-    <section><!-- Add Menu Price List -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                   
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
-                            Add Menu Price
-                        </button>
-                        
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h3 class="modal-title" id="exampleModalLongTitle" style="text-align:center;">Add Menu And Price</h3>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="." method="POST" role="form" enctype="multipart/form-data">{% csrf_token %}
-                                            {{ form_price|bootstrap }}
-
-                                            <div class="modal-footer form-group">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" class="form-control">Close</button>
-                                                <button class="btn btn-success" type="submit" class="form-control">Save</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    
-                </div>
-            </div>
+{% if user.is_superuser %}
+<section>
+    <!-- Add Menu Price List -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+            <!-- Button trigger modal -->
+            <a href="{% url 'add' %}" class="btn btn-success">Add Menu Price</a>
         </div>
-    </section><!-- End Add Menu Price List -->
-    {% endif %}
-    <hr>
+    </div>
+</section>
+<!-- End Add Menu Price List -->
+{% endif %}
+<hr>
 
 <!-- Show Slider Menu Price List -->
-    <section>
-        <!-- Menu -->
+<section>
+    <div class="album py-5 bg-light">
         <div class="container">
+
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="recommended_items">
-                        <!--recommended_items-->
-                        <h2 class="title text-center">menu list</h2>
-    
-                        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <!-- item active: three items -->
-                                    {% for item in price_menu_list_3 %}
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="{{item.pricemenu_image.url}}" alt="Item Image" />
-                                                    <h2>{{item.price}}K</h2>
-                                                    <p>{{item.name}}</p>
-                                                    <p>Update: {{item.pub_date|date:"Y-m-d"}}</p>
-                                                    <a href="#book_form" class="btn btn-default add-to-cart">
-                                                        <i class="fa fa-shopping-cart"></i>Book Now</a>
-                                                </div>
-    
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% endfor %}
+
+                {% for item in all_price %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="card-img-top" src="{{ item.pricemenu_image.url }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5>{{ item.name }}</h5>
+                            <h6>${{ item.price }}</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button class="btn btn-success">
+                                        <a href="{% url 'about' %}" style="text-decoration:none;color:white;">Booking Now</a>
+                                    </button>
                                 </div>
-    
-                                {% for item1 in new_price_list %}
-                                <div class="item">
-                                    <!-- item not active: many -->
-                                    {% for item2 in item1 %}
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="{{item2.pricemenu_image.url}}" alt="Item Image" />
-                                                    <h2>{{item2.price}}K</h2>
-                                                    <p>{{item2.name}}</p>
-                                                    <p>Update: {{item2.pub_date|date:"Y-m-d"}}</p>
-                                                    <a href="#book_form" class="btn btn-default add-to-cart">
-                                                        <i class="fa fa-shopping-cart"></i> Book Now</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                                {% endfor %}
-    
+                                <small class="text-muted">
+                                    <p>{{item.pub_date|date:"Y-m-d"}}</p>
+                                </small>
                             </div>
-                            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         </div>
                     </div>
-                    <!--/recommended_items-->
                 </div>
+                {% endfor %}
             </div>
         </div>
-    </section>
-    <!-- Menu -->
+    </div>
+</section>
+<!-- Menu -->
 {% endblock main %}

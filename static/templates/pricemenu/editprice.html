@@ -1,49 +1,56 @@
-{% extends "base.html" %}
-{% load static %}
-{% load bootstrap %}
-{% block title %}Edit Menu Price{% endblock title %}
+{% extends "base.html" %} 
+{% load static %} 
+{% load bootstrap %} 
+{% block title %}Edit Menu Price{% endblock title %} 
 {% block main %}
-    <section><!--Form Edit Menu Price-->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offet-2 col-xs-12">
-                    <form action="." method="POST" role="form">{% csrf_token %}
-                         <div class="form-group"><!-- name -->
-                            {{ form_price.message.errors }}
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" max_length="100" placeholder="{{pricelist.name}}" value="{{pricelist.name}}" id="id_name" name="name">
-                         </div>
+<section>
+    <!--Form Edit Menu Price-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offet-2 col-xs-12">
+                <form action="." method="POST" role="form">{% csrf_token %}
+                    <div class="form-group">
+                        <!-- name -->
+                        {{ form_price.message.errors }}
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" max_length="100" placeholder="{{pricelist.name}}" value="{{pricelist.name}}" id="id_name"
+                            name="name">
+                    </div>
 
-                         <div class="form-group"><!-- price -->
-                            <label for="price">Price</label>
-                            <input type="number" class="form-control" placeholder="{{pricelist.price}}" value="{{pricelist.price}}" id="id_price" name="price">
-                         </div>
+                    <div class="form-group">
+                        <!-- price -->
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" placeholder="{{pricelist.price}}" value="{{pricelist.price}}" id="id_price" name="price">
+                    </div>
 
-                         <div class="form-group">
-                            <label for="pricemenu_image">Upload Image</label>
-                            <input type="file" class="form-control" id="id_pricemenu_image" name="pricemenu_image" value="{{ pricelist.pricemenu_image }}">
-                         </div>
+                    <div class="form-group">
+                        <label for="pricemenu_image">Upload Image</label>
+                        <input type="file" class="form-control" id="id_pricemenu_image" name="pricemenu_image" value="{{ pricelist.pricemenu_image }}">
+                    </div>
 
-                         <div class="form-group"><!-- button-->
-                            <form action="{% url 'edit_price' pricelist.id %}" method="post">{% csrf_token %}
-                                <button class="btn btn-success" type="submit">
-                                    <i class="fa fa-save"> Save</i>
-                                </button>
-                            </form>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Delete -->
-            <div class="row">
-                <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offet-2 col-xs-12">
-                    <form action="{% url 'delete_price' pricelist.id %}" method="post" role="form">{% csrf_token %}
-                        <button class="btn btn-danger"><i class="fa fa-trash-o"> Delete</i></button>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <!-- button-->
+                        <form action="{% url 'edit_price' pricelist.id %}" method="post">{% csrf_token %}
+                            <button class="btn btn-success" type="submit">
+                                <i class="fa fa-save"> Save</i>
+                            </button>
+                        </form>
+                    </div>
+                </form>
             </div>
         </div>
-    </section><!-- End Form Edit Menu Price -->
-    <hr>
-{% endblock main %}
+
+        <!-- Delete -->
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offet-2 col-xs-12">
+                <form action="{% url 'delete_price' pricelist.id %}" method="post" role="form">{% csrf_token %}
+                    <button class="btn btn-danger">
+                        <i class="fa fa-trash-o"> Delete</i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Form Edit Menu Price -->
+<hr> {% endblock main %}

@@ -1,132 +1,79 @@
-{% extends "base.html" %}
-{% load bootstrap %}
-{% load widget_tweaks %}
-{%load static %}
-{% block title %}Post{% endblock title %}
-{% block main %}
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-12">
-                    <div class="blog-post-area">
-                        <h2 class="title text-center">Latest From our Blog</h2>
-                        <div class="single-blog-post">
-                            <h3>{{post.title}}</h3>
-                            <div class="post-meta">
-                                <ul>
-                                    <li>
-                                        <i class="fa fa-user"></i> {{user.username}}</li>
-                                    <li>
-                                        <i class="fa fa-clock-o"></i> {{post.timestamp|time}}</li>
-                                    <li>
-                                        <i class="fa fa-calendar"></i> {{post.timestamp|date:"Y-m-d"}}</li>
-                                </ul>
-                            </div>
-                            <a href="">
-                                <img src="{{post.image_post.url}}" alt="Image Post">
-                            </a>
-                            <p>{{post.body|safe|linebreaks}}</p>
-                            <div class="pager-area">
-                                <ul class="pager pull-right">
-                                    <li>
-                                        <a href="{% url 'list_post' %}">Back</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>                
-                </div>
-            </div>
-
-            <div class="row">
+{% extends "base.html" %} 
+{% load bootstrap %} 
+{%load static %} 
+{% block title %}{% if post %}{{post.title}}{% else%}Detail Post{% endif %}{% endblock title %} {% block main %}
+<section>
+    <div class="container">
+        <div class="row" style="margin-top:50px;">
+            <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-12">
+                <h2 class="title text-center"></h2>
+                <div class="blog-post">
+                    <h2 class="blog-post-title">{{post.title}}</h2>
+                    <p class="blog-post-meta">{{post.timestamp|date:"Y-m-d"}} by
+                        <a href="#">{{user.username}}</a>
+                    </p>
+                    <img src="{{post.image_post.url}}" alt="Image Post">
                 
+                    <p>{{post.body|safe|linebreaks}}</p>
+                    <a href="{% url 'list_post' %}">Back</a>
+                </div>
+                <!-- /.blog-post -->
             </div>
         </div>
-    </section>
 
-    <section><!-- show comment -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-12">
-                    <!--Comments-->
-                    <div class="response-area">
-                        <h2> Comment</h2>
-                        {% for comment in post.comments.all %} 
-                            <ul class="media-list">
-                                <li class="media">
-                                    <div class="media-body">
-                                        <ul class="sinlge-post-meta">
-                                            <li>
-                                                <i class="fa fa-user"> {{comment.author}}</i>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-clock-o"></i>{{comment.comment_date|time}}</li>
-                                            <li>
-                                                <i class="fa fa-calendar"></i> {{comment.comment_date|date:"Y-m-d"}}</li>
-                                        </ul>
-                                        <h5>{{comment.title_comment}}</h5>
-                                        <p>{{comment.body|safe|linebreaks}}</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        {% endfor %}
+        <div class="row">
+
+        </div>
+    </div>
+</section>
+
+<section>
+    <!-- show comment -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-12">
+                <!--Comments-->
+                <div class="my-3 p-3 bg-white rounded shadow-sm">
+                    <h6 class="border-bottom border-gray pb-2 mb-0">Comment</h6>
+                     {% for comment in post.comments.all %}
+                    <div class="media text-muted pt-3">
+                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                            <strong class="d-block text-gray-dark">@{{comment.author}}- {{comment.title_comment}} </strong>
+                            {{comment.body|safe|linebreaks}}
+                        </p>
                     </div>
+                     {% endfor %}
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!--comment box -->
-    <section>
-        <div class="container">
-            <!-- Leave comment-->
-            <div class="row">
-                <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-12">
-                    <!--/Response-area-->
-                    <div class="replay-box">
-                        <div class="row">
-                            <h2>Leave your comment</h2>
-                            {% if user.is_active %}
-                            <form action="{% url 'detail_post' post.id %}" method="POST" role="form">{% csrf_token %} 
-                                <div class="form-group">
-                                    {{ form|bootstrap }}
-                                </div>
-                                <button class="btn btn-success" type="submit" class="form-control"> Comment</button>
-                            </form>
-                            {% else %}
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                                    Comment
-                                </button>
-                                
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel"><div class="alert alert-danger" style="text-align:center;">Notice!!!</div></h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body" style="text-align:center;">
-                                                <h3>You must login to can leave comment.</h3>
-                                                <h2>Are you agree?</h2>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                                <button type="submit" class="btn btn-success"><a href="{% url 'login' %}">Yes</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        </div>
+<!--comment box -->
+<section>
+    <div class="container">
+        <!-- Leave comment-->
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-12">
+                <!--/Response-area-->
+                    <h2>Leave your comment</h2>
+
+                    <div class="row">
+                        {% if user.is_active %}
+                        <form action="{% url 'detail_post' post.id %}" method="POST" role="form">{% csrf_token %}
+                            <div class="form-group">
+                                {{ form|bootstrap }}
+                            </div>
+                            <button class="btn btn-success" type="submit" class="form-control"> Comment</button>
+                        </form>
+                        {% else %}
+                        <a href="#">You must login to comment this post</a>
+                        {% endif %}
                     </div>
-                    <!--/Reply Box-->
-                </div>
+                <!--/Reply Box-->
             </div>
         </div>
-    </section>
-    
+    </div>
+</section>
+
 {% endblock main %}

@@ -15,7 +15,6 @@ def pricetable(request):
     # get price menu form
     form_price = PriceMenuForm
     all_price = PriceMenu.objects.all().order_by('-pub_date')
-    add(request)
     return render(request, 'pricemenu/pricetable.html', locals())
 
 def edit(request, id):
@@ -46,6 +45,7 @@ def delete(request, id):
 
 @login_required
 def add(request):
+    form_price = PriceMenuForm
     # check method POST
     if request.method == 'POST':
         form = PriceMenuForm(request.POST or None, request.FILES or None)
@@ -57,4 +57,5 @@ def add(request):
 
             # go to list price table page
             return HttpResponseRedirect('/pricemenu/pricelist/')
+    return render(request, 'pricemenu/add.html', locals())
 

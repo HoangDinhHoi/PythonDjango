@@ -14,13 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf.urls import url
 from django.urls import path, include
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
-from .views import home, handle_errors, register
-from django.views.static import serve
-from django.conf.urls import handler400, handler403, handler404, handler500
+from salon.views import home, handle_errors, register
 
 urlpatterns = [
     # Link to admin page
@@ -42,16 +40,11 @@ urlpatterns = [
     # Form to register for user
     path("register/", register, name="register"),
     # For display image
-    # url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),    
-    # For Shop App
-    # path("shop/", include('shop.urls')),
+    url(r"^salonshop/", include(('salonshop.urls', 'salonshop'), namespace='salonshop')),
+    url(r"^cart/", include(('cart.urls', 'cart'), namespace='cart')),
+    url(r"^orders/", include(('orders.urls', 'orders'), namespace='orders')),
 
 ]
-handler400 = 'salon.views.handle_errors'
-handler403 = 'salon.views.handle_errors'
-handler404 = 'salon.views.handle_errors'
-handler500 = 'salon.views.handle_errors'
-
 # settings if debug == True
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

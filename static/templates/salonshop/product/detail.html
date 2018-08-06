@@ -1,0 +1,41 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% load bootstrap %} 
+{% block title %} {% if product %}{{ product.name }}{% else %}Product Detail{% endif %} 
+{% endblock title %} 
+
+{% block main %}
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading -->
+    <h1 class="my-4">Detail
+        <small>{{ product.name}}</small>
+    </h1>
+
+    <!-- Project One -->
+    <div class="row">
+        <div class="col-md-7">
+            <a href="#">
+                <img class="img-fluid rounded mb-3 mb-md-0" src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.jpeg' %}{% endif %}"
+                    alt="Detail image" style="width:700px;height:400px;">
+            </a>
+        </div>
+        <div class="col-md-5">
+            <h3>{{ product.name }}</h3>
+            <h5>
+                <a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a>
+            </h5>
+            <p>{% if product.description %}{{ product.description|safe|linebreaks }}{% else%}No description{% endif %}</p>
+            <h6>${{ product.price }}</h6>
+            <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                {% csrf_token %} {{ cart_product_form|bootstrap }}
+                <input type="submit" class="btn btn-primary" value="Add to cart">
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+</div>
+{% endblock %}

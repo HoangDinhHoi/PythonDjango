@@ -1,299 +1,88 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>{% block title %}Home{% endblock title %}</title>
+    <link rel="shortcut icon" href="{% static 'images/icon/fav.png' %}">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
-    <link href="{% static 'css/price-range.css' %}" rel="stylesheet">
-    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
-    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-    <link rel="shortcut icon" href="{% static 'images/home/fav.png' %}">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/ico/apple-touch-icon-114-precomposed.png' %}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/ico/apple-touch-icon-72-precomposed.png' %}">
-    <link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
 </head>
-<!--/head-->
 
 <body>
-    <header id="header">
-        <!--header-->
-        <div class="header_top">
-            <!--header_top-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="contactinfo">
-                            <ul class="nav nav-pills">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-phone"></i> +2 95 01 88 821</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-envelope"></i> info@domain.com</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="social-icons pull-right">
-                            <ul class="nav navbar-nav">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-linkedin"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-dribbble"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-google-plus"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/header_top-->
 
-        <div class="header-middle">
-            <!--header-middle-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="logo pull-left">
-                            <a href="{% url 'home' %}">
-                                <img src="{% static 'images/home/logobase.png' %}" alt="logo beauty salon" style="width:139px; height:45px;"/>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="shop-menu pull-right">
-                            <ul class="nav navbar-nav">
-                                {% if user.is_active %}
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-user"></i> Hi! {{user.username}}</a>
-                                    </li>
-                                {% else %}
-                                {% endif %}
-                                <li>
-                                    <a href="{% url 'about' %}#book_form">
-                                        <i class="fa fa-star"></i> Booking</a>
-                                </li>
-                                {% if user.is_active %}
-                                    <li>
-                                        <a href="{% url 'logout' %}">
-                                            <i class="fa fa-unlock"></i> Logout</a>
-                                    </li>
-                                {% else %}
-                                    <li>
-                                        <a href="{% url 'login' %}">
-                                            <i class="fa fa-lock"></i> Login</a>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/header-middle-->
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'list_post' %}">Blog
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'images' %}">Galleries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'pricetable' %}">Price Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'salonshop:product_list' %}">Shop</a>
+                    </li>
+                </ul>
+                <ul class="form-inline mt-2 mt-md-0">
+                    
+                    {% if user.is_active %}
+                        <li>
+                            <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+                        </li>
 
-        <div class="header-bottom">
-            <!--header-bottom-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-9">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="mainmenu pull-left">
-                            <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li>
-                                    <a href="{% url 'home' %}" class="active"><i class="fa fa-home" style="size:5px;"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#exampleModalLong" class="active" data-toggle="modal">
-                                        <i class="fa fa-phone" style="size:5px;"></i>
-                                    </a>
-                                    <!-- Button trigger modal -->
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle" style="text-align:center;"> LIST SHOP (8H-21H)</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-<!--Waiting-->                                                        
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#">Our Salon
-                                        <i class="fa fa-angle-down"></i>
-                                    </a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li>
-                                            <a href="{% url 'about' %}">Book Form</a>
-                                        </li>
-                                        {% if user.is_superuser %}
-                                            <li>
-                                                <a href="{% url 'book_list' %}">Booking List</a>
-                                            </li>
-                                        {% endif %}
-                                        <li>
-                                            <a href="{% url 'pricetable' %}">Menu Price List</a>
-                                        </li>
-                                        {% if user.is_active %}
-                                            <li>
-                                                <a href="{% url 'logout' %}">Logout</a>
-                                            </li>
-                                        {% else %}
-                                            <li>
-                                                <a href="{% url 'login' %}">Login</a>
-                                            </li>
-                                        {% endif %}
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="{% url 'list_post' %}">Blog</a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'images' %}">Galleries</a>
-                                </li>
-                                <li>
-                                    <a href="#">Our Shop</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="search_box pull-right">
-                            <input type="text" placeholder="Search" />
-                        </div>
-                    </div>
-                </div>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'login' %}" class="nav-link">Login</a>
+                        </li>
+
+                    {% endif %}
+                        
+                </ul>
             </div>
-        </div>
-        <!--/header-bottom-->
+        </nav>
     </header>
-    <!--/header-->
+    <main role="main">
 
     {% block main %}
-    
-    {% endblock main %}
-
-    <footer id="footer">
-        <!--Footer-->
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="companyinfo">
-                            <h2>
-                                <span>Beauty</span> Salon</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-7">
-                        {% for item in price_menu_list_3 %}
-                            <div class="col-sm-3">
-                                <div class="video-gallery text-center">
-                                    <a href="{% static 'about' %}#book_form">
-                                        <div class="iframe-img">
-                                            <img src="{{item.pricemenu_image.url}}" alt="" style="width:133,13px; height:59px;"/>
-                                        </div>
-                                        <div class="overlay-icon">
-                                            <i class="fa fa-play-circle-o"></i>
-                                        </div>
-                                    </a>
-                                    <p>{{item.name}}</p>
-                                    <h2>{{item.pub_date|date:"Y-m-d"}}</h2>
-                                </div>
-                            </div>
-                        {% endfor %}
-                        
-                       
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="address">
-                            <img src="{% static 'images/home/map.png' %}" alt="" />
-                            <p>15/40 Vo Thi Sau, Thanh Nhan, Hai Ba Trung, Ha Noi</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         
-        <hr>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-                    <p class="pull-right">Designed by
-                        <span>
-                            <a target="_blank" href="https://fb.com/hoihandsome">Themeum</a>
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </div>
+    {% endblock main %}
+    
+    </main>
 
-    </footer>
-    <!--/Footer-->
-
-
-
-    <script src="{% static 'js/jquery.js' %}"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
-    <script src="{% static 'js/price-range.js' %}"></script>
-    <script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="{% static 'js/holder.min.js' %}"></script>
 </body>
 
 </html>

@@ -47,24 +47,24 @@ def about(request):
             new_form.save()
 
             # we will send notification email to customer
-            # send_mail(
-            #     #title of this mail
-            #     'Thank you for your booking from Beauty Salon',
-            #     #select the template for this mail
-            #     get_template('emails/booking_notification.html').render(
-            #         #we can give some variable to template
-            #         context={
-            #             'customer': new_form.name,
-            #             'menu': new_form.menu,
-            #             'book_date': new_form.date, 
-            #         },
-            #     ),
-            #     #FROM
-            #     'hoanghoibk@gmail.com',
-            #     #TO
-            #     [new_form.email],
-            #     fail_silently= True,
-            # )
+            send_mail(
+                #title of this mail
+                'Thank you for your booking from Beauty Salon',
+                #select the template for this mail
+                get_template('emails/booking_notification.html').render(
+                    #we can give some variable to template
+                    context={
+                        'customer': new_form.name,
+                        'menu': new_form.menu,
+                        'book_date': new_form.date, 
+                    },
+                ),
+                #FROM
+                'hoanghoibk@gmail.com',
+                #TO
+                [new_form.email],
+                fail_silently= True,
+            )
 
             return HttpResponseRedirect('/salon/success/')
     return render(request, template, locals())

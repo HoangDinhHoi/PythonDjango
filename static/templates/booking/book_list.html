@@ -1,51 +1,45 @@
-{% extends "base.html" %}
-{% block title%}Booking List{% endblock %}
+{% extends "base.html" %} 
+{% block title%}Booking List{% endblock %} 
 {% block main %}
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-12">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th>Name</th>
-                                    <th>Menu</th>
-                                    <th>Date</th>
-                                    <th>Email</th>
-                                    <th>Booking Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for book in all_book %}
-                                    <tr>
-                                        <td scope="row">{{forloop.counter}}</td>
-                                        <td>{{book.name}}</td>
-                                        <td>{{book.menu}}</td>
-                                        <td>{{book.date|date:"Y-m-d"}}</td>
-                                        <td>{{book.email}}</td>
-                                        <td>
-                                            {% if book.book_time == '1' %}
-                                                10-12
-                                            {% elif book.book_time == '2' %}
-                                                12-14
-                                            {% elif book.book_time == '3' %}
-                                                14-16
-                                            {% else %}
-                                                16-20
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            <form action="{% url 'edit_booking' book.id %}" method="post">{% csrf_token %}
-                                                <button class="btn btn-danger" type="submit"> Edit</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                </div>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10" style="margin-top:50px;margin-left:100px;">
+                <h1>Booking List</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th>Name</th>
+                            <th>Menu</th>
+                            <th>Date</th>
+                            <th>Email</th>
+                            <th>Booking Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in all_book %}
+                        <tr>
+                            <td scope="row">{{forloop.counter}}</td>
+                            <td>{{book.name}}</td>
+                            <td>{{book.menu}}</td>
+                            <td>{{book.date|date:"Y-m-d"}}</td>
+                            <td>{{book.email}}</td>
+                            <td>
+                                {% if book.book_time == '1' %} 10-12 {% elif book.book_time == '2' %} 12-14 {% elif book.book_time == '3' %} 14-16 {% else
+                                %} 16-20 {% endif %}
+                            </td>
+                            <td>
+                                <form action="{% url 'edit_booking' book.id %}" method="post">{% csrf_token %}
+                                    <button class="btn btn-danger" type="submit"> Edit</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 {% endblock %}

@@ -1,57 +1,56 @@
-{% extends "base.html" %}
-{% load bootstrap %}
-{% block title %}List Blog{% endblock title %}
-{% block main %}
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-12">
-                    <div class="blog-post-area">
-                        <h2 class="title text-center">Latest From our Blog</h2>
-                        <!-- Bat dau vong lap de show ra cac post-->
-                        {% for post in posts %}
-                        <div class="single-blog-post">
-                            <h3>{{ post.title }}</h3>
-                            <div class="post-meta">
-                                <ul>
-                                    <li>
-                                        <i class="fa fa-user"></i> {{ user.username }}</li>
-                                    <li>
-                                        <i class="fa fa-clock-o"></i> {{ post.timestamp|time }}</li>
-                                    <li>
-                                        <i class="fa fa-calendar"></i>  {{ post.timestamp|date:"Y-m-d" }}</li>
-                                </ul>
+{% extends "base.html" %} {% load bootstrap %} {% block title %}List Blog{% endblock title %} {% block main %}
+<section>
+    <div class="container">
+        <div class="row" style="margin-top:50px;">
+            <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-12">
+                    <h2 class="title text-center">Latest From our Blog</h2>
+                    <!-- Bat dau vong lap de show ra cac post-->
+                    
+                        <div class="row">
+                             {% for post in posts %}
+                            <div class="col-md-6">
+                                <div class="card flex-md-row mb-4 shadow-sm h-md-400">
+                                    <div class="card-body d-flex flex-column align-items-start">
+                                        <h3 class="mb-0">
+                                            <a class="text-dark" href="{% url 'detail_post' post.id %}">{{ post.title }}</a>
+                                        </h3>
+                                        <h6>At {{ post.timestamp|time }}</h6>
+                                        <div class="mb-1 text-muted">{{ post.timestamp|date:"Y-m-d" }}</div>
+                                        <p class="card-text mb-auto">{{ post.body|truncatechars:100 }}</p>
+                                        <a href="{% url 'detail_post' post.id %}">Continue reading</a>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="">
-                                <img src="{{post.image_post.url}}" alt="Image of post">
+                             {% endfor %}
+                        </div>
+                    
+
+
+                    <!--phan trang -->
+                    <div class="pagination-area">
+                        <span class="step-links">
+                            {% if posts.has_previous %}
+                            <a href="?page={{ posts.previous_page_number }}">
+                                <i class="fa fa-backward">Previous</i>
                             </a>
-                            <p>{{ post.body|truncatechars:300 }}</p>
-                            <a class="btn btn-primary" href="{% url 'detail_post' post.id %}">Read More</a>
-                        </div>
-                        {% endfor %}
+                            {% endif %}
+                        </span>
 
+                        <span class="current">
+                            Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                        </span>
 
-                        <!--phan trang -->
-                        <div class="pagination-area">
-                            <span class="step-links">
-                                {% if posts.has_previous %}
-                                <a href="?page={{ posts.previous_page_number }}"><i class="fa fa-backward">Previous</i></a>
-                                {% endif %}
-                            </span>
-                        
-                            <span class="current">
-                                Page {{ posts.number }} of {{ posts.paginator.num_pages }}
-                            </span>
-                        
-                            <span>
-                                {% if posts.has_next %}
-                                <a href="?page={{ posts.next_page_number }}"><i class="fa fa-forward">Next</i></a>
-                                {% endif %}
-                            </span>
-                        </div>
+                        <span>
+                            {% if posts.has_next %}
+                            <a href="?page={{ posts.next_page_number }}">
+                                <i class="fa fa-forward">Next</i>
+                            </a>
+                            {% endif %}
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 {% endblock main %}

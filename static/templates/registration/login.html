@@ -1,52 +1,46 @@
-{% extends "base.html" %}
-{% load static %}
-{% load bootstrap %}
-{% block title %}Login{% endblock title %}
+{% extends "base.html" %} 
+{% load static %} 
+{% load bootstrap %} {% block title %}Login{% endblock title %} 
 {% block main %}
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-3 col-xs-12">
-                    <div class="panel panel-info">
-                        <div class="panel panel-heading">
-                            <h2 style="text-align:center;">Login your account</h2>
-                        </div>
-                        <div class="panel">
-                             {% if form.errors %}
-                            <div class="alert alert-danger">
-                                <p>Your username and password didn't match. Please try again.</p>
-                                {% endif %} {% if next %} {% if user.is_authenticated %}
-                                <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
-                                {% else %}
-                                <p>Please login to see this page.</p>
-                            </div>
-                             {% endif %} {% endif %}
-                        </div>
-                        <div class="panel">
-                            <form method="post" action="{% url 'login' %}">
-                                {% csrf_token %}
-                            
-                                <div>
-                                    <td>{{ form.username|bootstrap}}</td>
-                                </div>
-                                <div>
-                                    <td>{{ form.password|bootstrap}}</td>
-                                </div>
-                            
-                                <div>
-                                    <input type="submit" value="Login" class="btn btn-success" />
-                                    <input type="hidden" name="next" value="{{ next }}" />
-                                </div>
-                            </form>
-                            
-                            {# Assumes you setup the password_reset view in your URLconf #}
-                            <p>
-                                <a href="{% url 'password_reset' %}">Lost password?</a>
-                            </p>
-                        </div>
+<section>
+    <div class="container">
+        <div class="row" style="margin-top:50px; margin-left:300px;">
+            <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-3 col-xs-6">
+                <div class="panel panel-info">
+                    <div class="panel panel-heading">
+                        <h2 style="text-align:center;">Login your account</h2>
                     </div>
+                    <div class="panel">
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <p>Your username and password didn't match. Please try again.</p>
+                            {% endif %} {% if next %} {% if user.is_authenticated %}
+                            <p>Your account doesn't have access to this page. To proceed, please login with an account that
+                                has access.</p>
+                            {% else %}
+                            <p>Please login to see this page.</p>
+                        </div>
+                        {% endif %} {% endif %}
+                    </div>
+                    <div class="panel">
+                        <form method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+
+                            <div>
+                                <td>{{ form.username|bootstrap}}</td>
+                            </div>
+                            <div>
+                                <td>{{ form.password|bootstrap}}</td>
+                            </div>
+
+                            <div>
+                                <input type="submit" value="Login" class="btn btn-success" />
+                                <input type="hidden" name="next" value="{{ next }}" />
+                            </div>
+                        </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 {% endblock main %}
