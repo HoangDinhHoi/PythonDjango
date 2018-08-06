@@ -10,5 +10,5 @@ source /venv/bin/active
 - Step 6: python3 manage.py migrate 
 The last step : python3 manage.py runserver
 
-id:admin
-pass:123456Bk
++id:admin
++pass:123456Bk
