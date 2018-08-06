@@ -3,7 +3,7 @@ For Ubuntu: You must install "pip" and "virtualenv" to can use this source
 
 The first step: cd PythonDjango
 - Step 2: Open Terminal on your computer or on VSCode. 
-source /venv/bin/active
+    And then type on terminal follow command: source /venv/bin/active
 - Step 3: pip3 install -r requirement.txt
 - Step 4: python3 manage.py makemigrations (if have any change in database)
 - Step 5: python3 manage.py collectstatic (if have change in "static" file)
