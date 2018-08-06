@@ -9,3 +9,6 @@ source /venv/bin/active
 - Step 5: python3 manage.py collectstatic (if have change in "static" file)
 - Step 6: python3 manage.py migrate 
 The last step : python3 manage.py runserver
+
+id:admin
+pass:123456Bk
