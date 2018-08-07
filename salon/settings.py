@@ -16,8 +16,8 @@ import os
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'hoanghoibk@gmail.com'
-EMAIL_HOST_PASSWORD = '6364848895'
+EMAIL_HOST_USER = 'your_email'
+EMAIL_HOST_PASSWORD = 'your_password'
 EMAIL_PORT = 587
 
 # EMAIL_HOST = 'smtp.sendgrid.net'
